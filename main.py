@@ -26,15 +26,17 @@ form = """
     </head>
     <body>
         <form method="POST">
-        <input name="rot" type="text">Rotate By:</input>
-        <textarea name="text"></textarea>
-        <input type="submit"></input>
+        <label for="rot-id">Rotate By:</label>
+        <input id="rot-id" name="rot" type="text" />
+        <textarea name="text" />
+        <input type="submit" />
         </form>
     </body>
 </html>"""
 
-@app.route("/")
+@app.route("/"), methods=['POST']
 def index():
-    return "Hello World"
+    rot_by = request.form['rot']
+    return rot_by
 
 app.run()
