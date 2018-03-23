@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -25,18 +25,19 @@ form = """
         </style>
     </head>
     <body>
-        <form method="POST">
-        <label for="rot-id">Rotate By:</label>
-        <input id="rot-id" name="rot" type="text" />
-        <textarea name="text" />
-        <input type="submit" />
+        <form method="post">
+            <label for="rot">
+            Rotate By:
+            <input id="rot" name="rot" type="text" value="0" />
+            </label>
+            <textarea name="text"></textarea>
+            <input type="submit" value="Submit Query"/>
         </form>
     </body>
 </html>"""
 
-@app.route("/"), methods=['POST']
+@app.route("/")
 def index():
-    rot_by = request.form['rot']
-    return rot_by
+    return form
 
 app.run()
